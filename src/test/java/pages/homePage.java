@@ -21,8 +21,14 @@ public class homePage {
     @FindBy(xpath = "//a[normalize-space()='about']")
     WebElement about;
 
+    @FindBy(xpath = "//h1[@class='title']")
+    WebElement aboutResult;
+
     @FindBy(xpath = "//a[normalize-space()='contact']")
     WebElement contact;
+
+    @FindBy(xpath = "//h1[@class='title']")
+    WebElement contactResult;
 
     public void welcomeMessage()
     {
@@ -39,5 +45,23 @@ public class homePage {
     {
         Assert.assertTrue(loginButton.isDisplayed(),"The login button is not displayed");
 
+    }
+
+    public void homeButton()
+    {
+        home.click();
+        Assert.assertTrue(welcome.isDisplayed(),"The welcome message is not displayed");
+    }
+
+    public void aboutButton()
+    {
+        about.click();
+        Assert.assertTrue(aboutResult.isDisplayed(),"The about page is not displayed");
+    }
+
+    public void contactButton()
+    {
+        contact.click();
+        Assert.assertTrue(contactResult.isDisplayed(),"The contact page is not displayed");
     }
 }

@@ -1,5 +1,6 @@
 package base;
 
+import Utils.ExcelUtils;
 import Utils.ExtentManager;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -9,7 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import pages.RegisterPage;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class Baseclass{
@@ -17,10 +20,12 @@ public class Baseclass{
     protected WebDriver driver;
     protected ExtentReports extent;
     protected ExtentTest test;
+    protected RegisterPage registerPage;
+
+
 
     @BeforeClass
-    public void setUp()
-    {
+    public void setUp() throws IOException {
         WebDriverManager.chromedriver().setup();
         driver= new ChromeDriver();
         ConfigReader reader= new ConfigReader();

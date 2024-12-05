@@ -1,17 +1,29 @@
 package pages;
 
+import Utils.ExcelUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class RegisterPage {
 
     WebDriver driver;
+    ExcelUtils excelUtils = new ExcelUtils("Register");
 
-    public RegisterPage(WebDriver driver) {
+
+
+    public RegisterPage(WebDriver driver) throws IOException {
         this.driver = driver;
+    }
+
+    public RegisterPage() throws IOException {
+
     }
 
     @FindBy(xpath = "//h1[normalize-space()='Signing up is easy!']")
@@ -89,7 +101,7 @@ public class RegisterPage {
     @FindBy(xpath = "//h1[normalize-space()='Welcome bunny']")
     WebElement registerSuccess;
 
-    public void registerPage()
+    public void registerPageNav()
     {
         try {
             Assert.assertTrue(registerPage.isDisplayed(),"The Register page is not displayed");
@@ -100,8 +112,7 @@ public class RegisterPage {
         }
     }
 
-    public void registerData()
-    {
+    public void registerData() throws InterruptedException {
         firstname.click();
         firstname.sendKeys("");
         lastname.click();
@@ -124,6 +135,7 @@ public class RegisterPage {
         password.sendKeys("");
         confirmPassword.click();
         confirmPassword.sendKeys("");
+        Thread.sleep(6000);
     }
 
     public void registerError()
@@ -146,4 +158,65 @@ public class RegisterPage {
         Assert.assertTrue(passwordError.isDisplayed(),"The error is not displayed");
         Assert.assertTrue(confirmPasswordError.isDisplayed(),"The error is not displayed");
     }
+
+    public void registerDataReal(String firstnameData,String lastnameData,String addressData, String cityData, String stateData, String zipcodeData, String numberData, String ssnData, String usernameData, String passwordData, String confirmPasswordData
+    )
+    {
+//        String firstnameData,String lastnameData,String addressData, String cityData, String stateData, String zipcodeData, String numberData, String ssnData, String usernameData, String passwordData, String confirmPasswordData
+        firstname.click();
+        firstname.sendKeys(firstnameData);
+        lastname.click();
+        lastname.sendKeys(lastnameData);
+        address.click();
+        address.sendKeys(addressData);
+        city.click();
+        city.sendKeys(cityData);
+        state.click();
+        state.sendKeys(stateData);
+        zipcode.click();
+        zipcode.sendKeys(zipcodeData);
+        number.click();
+        number.sendKeys(numberData);
+        ssn.click();
+        ssn.sendKeys(ssnData);
+        username.click();
+        username.sendKeys(usernameData);
+//        username.clear();
+//        username.sendKeys("srikar");
+        password.click();
+        password.sendKeys(passwordData);
+        confirmPassword.click();
+        confirmPassword.sendKeys(confirmPasswordData);
+        register.click();
+    }
+
+    public void registerSuccessMessage()
+    {
+        Assert.assertTrue(registerSuccess.isDisplayed(),"The registration is not done");
+    }
+
+    @DataProvider(name="registerData")
+    public Object[][] accountDataProvider() throws IOException
+    {
+        int rowCount= excelUtils.getRows();
+        int colCount= 11;//excelUtils.getColumns(rowCount);
+        System.out.println("row"+rowCount+"col"+colCount);
+
+        if (rowCount < 2 || colCount < 11) {
+            throw new RuntimeException("Insufficient data in Excel file: Minimum 1 row and 11 columns required."+"row"+rowCount+"col"+colCount);
+        }
+        Object[][] data =new Object[rowCount-1][colCount];
+
+
+        for(int i=1;i<rowCount;i++){
+            for(int j=0;j<colCount;j++)
+            {
+                data[i-1][j]=excelUtils.getCellData(i,j);
+            }
+        }
+
+        return data;
+    }
+
+
 }
