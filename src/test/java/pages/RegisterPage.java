@@ -9,7 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class RegisterPage {
 
@@ -159,10 +158,8 @@ public class RegisterPage {
         Assert.assertTrue(confirmPasswordError.isDisplayed(),"The error is not displayed");
     }
 
-    public void registerDataReal(String firstnameData,String lastnameData,String addressData, String cityData, String stateData, String zipcodeData, String numberData, String ssnData, String usernameData, String passwordData, String confirmPasswordData
-    )
+    public void registerDataReal(String firstnameData,String lastnameData,String addressData, String cityData, String stateData, String zipcodeData, String numberData, String ssnData, String usernameData, String passwordData, String confirmPasswordData)
     {
-//        String firstnameData,String lastnameData,String addressData, String cityData, String stateData, String zipcodeData, String numberData, String ssnData, String usernameData, String passwordData, String confirmPasswordData
         firstname.click();
         firstname.sendKeys(firstnameData);
         lastname.click();
@@ -181,8 +178,6 @@ public class RegisterPage {
         ssn.sendKeys(ssnData);
         username.click();
         username.sendKeys(usernameData);
-//        username.clear();
-//        username.sendKeys("srikar");
         password.click();
         password.sendKeys(passwordData);
         confirmPassword.click();
@@ -199,7 +194,7 @@ public class RegisterPage {
     public Object[][] accountDataProvider() throws IOException
     {
         int rowCount= excelUtils.getRows();
-        int colCount= 11;//excelUtils.getColumns(rowCount);
+        int colCount= 11;
         System.out.println("row"+rowCount+"col"+colCount);
 
         if (rowCount < 2 || colCount < 11) {

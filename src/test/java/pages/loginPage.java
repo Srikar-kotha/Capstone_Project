@@ -99,7 +99,7 @@ public class loginPage extends homePage {
     public Object[][] loginDataProvider() throws IOException
     {
         int rowCount= excelUtils.getRows();
-        int colCount= 2;//excelUtils.getColumns(rowCount);
+        int colCount= 2;
         Object[][] data =new Object[rowCount-1][colCount];
 
         for(int i=1;i<rowCount;i++){

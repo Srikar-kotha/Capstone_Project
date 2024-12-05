@@ -1,6 +1,5 @@
 package test;
 
-import Utils.ExcelUtils;
 import Utils.ExtentManager;
 import base.Baseclass;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -14,7 +13,7 @@ import pages.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
+
 
 
 public class Capstone extends Baseclass implements ITestListener {
@@ -237,7 +236,7 @@ public class Capstone extends Baseclass implements ITestListener {
     public void paybill(String nameData,String addressData,String cityData,String stateData,String zipcodeData,String numberData,String accountData,String verifyAccountData)
     {
         billPayPage billPayPage = PageFactory.initElements(driver,pages.billPayPage.class);
-        billPayPage.paybill(nameData,addressData,cityData,stateData,zipcodeData,numberData,accountData,verifyAccountData);
+        billPayPage.payBill(nameData,addressData,cityData,stateData,zipcodeData,numberData,accountData,verifyAccountData);
         test.log(Status.PASS,"The payee information is entered");
     }
 

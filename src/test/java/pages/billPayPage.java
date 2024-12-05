@@ -63,7 +63,7 @@ public class billPayPage {
     @FindBy(xpath="//h1[@class='title']")
     WebElement billPayResult;
 
-    public void paybill(String nameData,String addressData,String cityData,String stateData,String zipcodeData,String numberData,String accountData,String verifyAccountData)
+    public void payBill(String nameData,String addressData,String cityData,String stateData,String zipcodeData,String numberData,String accountData,String verifyAccountData)
     {
         billPay.click();
         payeeName.click();
