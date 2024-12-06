@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExtentManager {
 
@@ -23,7 +25,9 @@ public class ExtentManager {
     }
 
     private static void createReport() {
-        ExtentSparkReporter spark = new ExtentSparkReporter("ExtentReport");
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+        String reportPath = System.getProperty("user.dir") + "/reports/TestReport_" + timeStamp + ".html";
+        ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
         spark.config().setReportName("Test Automation Report");
         spark.config().setDocumentTitle("Automation Execution Report");
         spark.config().setTheme(Theme.DARK);
