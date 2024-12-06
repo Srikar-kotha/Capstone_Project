@@ -52,6 +52,7 @@ public class Capstone extends Baseclass implements ITestListener {
 
     @Test(priority = 2)
     public void registerPage() throws InterruptedException {
+
         RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
         registerPage.registerPageNav();
         test.log(Status.PASS,"The page is navigated to register page");
@@ -63,13 +64,10 @@ public class Capstone extends Baseclass implements ITestListener {
     @Test(priority = 3,dataProvider = "registerData",dataProviderClass = RegisterPage.class)
     public void Register(String firstnameData,String lastnameData,String addressData, String cityData, String stateData, String zipcodeData, String numberData, String ssnData, String usernameData, String passwordData, String confirmPasswordData)//String firstnameData,String lastnameData,String addressData, String cityData, String stateData, String zipcodeData, String numberData, String ssnData, String usernameData, String passwordData, String confirmPasswordData
     {
-//        System.out.println(first+last);
         RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
         registerPage.registerDataReal(firstnameData, lastnameData, addressData, cityData, stateData, zipcodeData, numberData, ssnData, usernameData, passwordData, confirmPasswordData);//firstnameData, lastnameData, addressData, cityData, stateData, zipcodeData, numberData, ssnData, usernameData, passwordData, confirmPasswordData
         test.log(Status.PASS,"The registration is done");
     }
-
-
 
     @Test(priority = 4)
     public void registrationSuccess()
@@ -108,7 +106,6 @@ public class Capstone extends Baseclass implements ITestListener {
         loginPage.wrongLoginData();
         loginPage.loginErrorMessage();
         test.log(Status.PASS,"The login error message is thrown");
-
     }
 
     @Test(priority = 8,dataProvider = "loginData", dataProviderClass = loginPage.class)

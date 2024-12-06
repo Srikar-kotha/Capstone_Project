@@ -79,10 +79,6 @@ public class loginPage extends homePage {
 
     public void loginData(String usernameData,String passwordData)
     {
-        if(loginConfirm.isDisplayed())
-        {
-            logout.click();
-        }
         loginUsername.click();
         loginUsername.sendKeys(usernameData);
         loginPassword.click();

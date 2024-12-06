@@ -80,8 +80,8 @@ public class updateDetailsPage {
     public void updateSuccess()
     {
         updateButton.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[normalize-space()='Profile Updated']")));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[normalize-space()='Profile Updated']")));
         Assert.assertTrue(updateProfileResult.isDisplayed(),"The information is not updated");
     }
 

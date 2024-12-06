@@ -97,7 +97,7 @@ public class RegisterPage {
     @FindBy(xpath = "//input[@value='Register']")
     WebElement register;
 
-    @FindBy(xpath = "//h1[normalize-space()='Welcome bunny']")
+    @FindBy(xpath = "//h1[normalize-space()='Welcome bunny1503']")
     WebElement registerSuccess;
 
     public void registerPageNav()
